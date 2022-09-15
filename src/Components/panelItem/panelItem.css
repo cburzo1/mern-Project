@@ -3,7 +3,7 @@
 }
 
 .thumbNail{
-    background-color: aliceblue;
+    border: 1px solid black;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
@@ -11,23 +11,20 @@
 }
 
 .panelInfo{
-    background-color: aliceblue;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: -10px;
 }
 
 .logo{
-    margin: 5px;
     background-color: grey;
+    margin: 5px;
     height: 30px;
     width: 30px;
     float: left;
 }
 
 .text{
-    background-color: grey;
-    color: aliceblue;
     margin-left: 40px;
 }
 

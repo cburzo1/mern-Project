@@ -3,16 +3,24 @@ import PanelItem from '../panelItem/panelItem';
 import { useState, useEffect } from 'react';
 
 function UserPanel() {
-    const [userPanel, setUserPanel] = useState([0, 0 , 0, 0]);
+    const [userPanel, setUserPanel] = useState([]);
 
     useEffect(() =>{
-        //setUserPanel([0, 0, 0]);
+        fetch('http://localhost:3001/userFeed/posts')
+        .then(res => res.json())
+        .then(resData => {
+            console.log(resData);
+            setUserPanel(resData);
+        })
+        .catch(err => console.log(err));
     }, []);
 
     return (
         <div className="userPanel">
             {userPanel.map((i, index) => {
-                return <PanelItem key = {index}/>
+                return (<PanelItem 
+                    key = {index}
+                    item = {userPanel[index]}/>)
             })}
         </div>
     );

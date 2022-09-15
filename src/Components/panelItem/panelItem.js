@@ -1,6 +1,10 @@
 import './panelItem.css';
 
-function PanelItem() {
+function PanelItem(props) {
+
+    //console.log(props.item);
+    console.log(props.item.timeEllapseSincePost);
+
     return (
         <div className="panelItem">
             <div className="thumbNail">
@@ -12,13 +16,13 @@ function PanelItem() {
                 </div>
                 <div className="text">
                         <div className="title">
-                            <h6>Video: How To Thumbnail</h6>
+                            <h6>{props.item.thumbnailTitle}</h6>
                         </div>
                         <div className="userName">
-                            <h6>Ed Sumit</h6>
+                            <h6>{props.item.userName}</h6>
                         </div>   
                         <div className="viewsAndTimePosted">
-                            <h6>30 views 2 hours ago</h6>
+                            <h6>{props.item.views} views | {props.item.timeEllapseSincePost} hours ago</h6>
                         </div>
                 </div>
             </div>
