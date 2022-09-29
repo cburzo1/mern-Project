@@ -22,12 +22,14 @@ function ThumbnailCreator() {
             if(res.status !== 200 && res.status !== 201){
                 throw new Error('Creating or editing a post failed!'); 
             }
+            console.log(res);
             return res.json();
         })
         .then(resData => {
             const post = JSON.stringify(resData);
             console.log(post);
-        });
+        })
+        .catch(err => console.log(err));
     }
 
     return (
