@@ -10,6 +10,11 @@
     height: 110px;
 }
 
+.thumbNail img{
+    height: 111px;
+    width: 180px;
+}
+
 .panelInfo{
     margin-left: 10px;
     margin-right: 10px;

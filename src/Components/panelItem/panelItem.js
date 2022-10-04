@@ -2,13 +2,10 @@ import './panelItem.css';
 
 function PanelItem(props) {
 
-    //console.log(props.item);
-    console.log(props.item.timeEllapseSincePost);
-
     return (
         <div className="panelItem">
             <div className="thumbNail">
-
+                <img src={'http://localhost:3001/' + props.item.imageUrl}/>
             </div>
             <div className="panelInfo">
                 <div className="logo">
@@ -19,10 +16,10 @@ function PanelItem(props) {
                             <h6>{props.item.thumbnailTitle}</h6>
                         </div>
                         <div className="userName">
-                            <h6>{props.item.userName}</h6>
+                            <h6>{props.item.creator.userName}</h6>
                         </div>   
                         <div className="viewsAndTimePosted">
-                            <h6>{props.item.views} views | {props.item.timeEllapseSincePost} hours ago</h6>
+                            <h6>{0} views | {props.item.createdAt} hours ago</h6>
                         </div>
                 </div>
             </div>
