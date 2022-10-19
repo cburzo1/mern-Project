@@ -3,15 +3,15 @@ import { useState } from 'react';
 
 function ThumbnailCreator() {
     const [valThumbnail, setThumbnailVal] = useState('');
-    const [valImage, setImageVal] = useState('')
+    const [valImage, setImageVal] = useState({})
 
     const changeThumbnailVal = (e) => {
         setThumbnailVal(e.target.value);
     }
 
     const changeImageVal = (e) => {
-        console.log(e.target.files[0].name);
-        setImageVal(e.target.value);
+        console.log("FILES", e.target.files);
+        setImageVal(e.target.files);
     }
 
     const Accept = () => {
@@ -21,6 +21,10 @@ function ThumbnailCreator() {
         formData.append('ThumbnailTitle', valThumbnail);
         formData.append('image', valImage);
 
+        for (const value of formData.values()) {
+            console.log(value);
+          }
+
         fetch('http://localhost:3001/userFeed/post', {
             method: 'POST',
             body: formData
@@ -29,14 +33,13 @@ function ThumbnailCreator() {
             if(res.status !== 200 && res.status !== 201){
                 throw new Error('Creating or editing a post failed!'); 
             }
-            console.log(res);
             return res.json();
         })
         .then(resData => {
             const post = JSON.stringify(resData);
             console.log(post);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR HERE::", err));
     }
 
     return (

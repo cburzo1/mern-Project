@@ -15,6 +15,8 @@ function UserPanel() {
         .catch(err => console.log(err));
     }, []);
 
+    console.log("List:: ", userPanel);
+
     return (
         <div className="userPanel">
             {userPanel.map((i, index) => {
