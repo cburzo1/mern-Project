@@ -4,15 +4,13 @@ import ThumbnailCreator from '../../Components/thumbnailCreator/thumbnailCreator
 import {Link, useParams} from 'react-router-dom';
 
 function CreatorPage() {
-    const {id} = useParams();
-
-    console.log(id);
+    let {title} = useParams();
 
     return (
         <div className="creatorPage">   
             <Link to="/">Front Page</Link>
             <Header />
-            <ThumbnailCreator/>
+            <ThumbnailCreator title = {title}/>
         </div>
     );
 }

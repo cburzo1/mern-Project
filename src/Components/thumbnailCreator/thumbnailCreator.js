@@ -1,9 +1,12 @@
 import './thumbnailCreator.css';
 import { useState } from 'react';
 
-function ThumbnailCreator() {
+function ThumbnailCreator(props) {
     const [valThumbnail, setThumbnailVal] = useState('');
     const [valImage, setImageVal] = useState({})
+
+    props.title.replace('...', '/');
+    const title = JSON.parse(props.title);
 
     const changeThumbnailVal = (e) => {
         setThumbnailVal(e.target.value);
@@ -24,7 +27,7 @@ function ThumbnailCreator() {
             console.log(value);
           }
 
-        fetch('http://localhost:3001/userFeed/post', {
+        fetch(`http://localhost:3001/userFeed/post/${title._id}`,{
             method: 'POST',
             body: formData
         })

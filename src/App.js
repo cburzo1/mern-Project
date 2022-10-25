@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {<FrontPage />}/>
         <Route path = "creator/:title" element = {<CreatorPage />}/>
+        <Route path = "creator" element = {<CreatorPage />}/>
         <Route path = "utility" element = {<UtilityPage />}/>
         <Route path = "*" element = {<h3>No Match</h3>}/>
       </Routes>

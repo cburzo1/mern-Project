@@ -26,7 +26,7 @@ function UtilityPage() {
                         <div key = {Math.random()}>
                             {i.thumbnailTitle}
                             <Link to = {'/creator/'+ 
-                                i.thumbnailTitle
+                                JSON.stringify(i).replace('/', '...')
                             }>EDIT</Link>
                         </div>);
                 })}
