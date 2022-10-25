@@ -10,8 +10,7 @@ function ThumbnailCreator() {
     }
 
     const changeImageVal = (e) => {
-        console.log("FILES", e.target.files);
-        setImageVal(e.target.files);
+        setImageVal(e.target.files[0]);
     }
 
     const Accept = () => {

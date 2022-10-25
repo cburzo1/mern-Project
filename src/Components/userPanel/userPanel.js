@@ -15,7 +15,7 @@ function UserPanel() {
         .catch(err => console.log(err));
     }, []);
 
-    console.log("List:: ", userPanel);
+    //console.log("List:: ", userPanel);
 
     return (
         <div className="userPanel">
