@@ -5,8 +5,12 @@ function ThumbnailCreator(props) {
     const [valThumbnail, setThumbnailVal] = useState('');
     const [valImage, setImageVal] = useState({})
 
-    props.title.replace('...', '/');
-    const title = JSON.parse(props.title);
+    let title;
+    let url;
+    if(props.title){
+        props.title.replace('...', '/');
+        title = JSON.parse(props.title);
+    }
 
     const changeThumbnailVal = (e) => {
         setThumbnailVal(e.target.value);
@@ -27,7 +31,7 @@ function ThumbnailCreator(props) {
             console.log(value);
           }
 
-        fetch(`http://localhost:3001/userFeed/post/${title._id}`,{
+        fetch(title != null? url = `http://localhost:3001/userFeed/post/${title._id}`: url = 'http://localhost:3001/userFeed/post',{
             method: 'POST',
             body: formData
         })

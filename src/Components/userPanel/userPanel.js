@@ -9,7 +9,6 @@ function UserPanel() {
         fetch('http://localhost:3001/userFeed/posts')
         .then(res => res.json())
         .then(resData => {
-            console.log("resData:: ", resData);
             setUserPanel(resData.posts);
         })
         .catch(err => console.log(err));
