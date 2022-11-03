@@ -2,6 +2,7 @@ import './App.css';
 import FrontPage from './Pages/frontPage/frontPage';
 import CreatorPage from './Pages/creatorPage/creatorPage';
 import UtilityPage from './Pages/utilityPage/utilityPage';
+import SignLogPage from './Pages/signLogPage/signLogPage';
 import {Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path = "creator/:title" element = {<CreatorPage />}/>
         <Route path = "creator" element = {<CreatorPage />}/>
         <Route path = "utility" element = {<UtilityPage />}/>
+        <Route path = "signLog" element = {<SignLogPage />}/>
         <Route path = "*" element = {<h3>No Match</h3>}/>
       </Routes>
     </div>
