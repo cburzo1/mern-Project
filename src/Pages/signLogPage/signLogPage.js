@@ -3,7 +3,7 @@ import Header from '../../Components/Header/Header';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-function SignLogPage() {
+function SignLogPage(props) {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [userName, setUserName] = useState('');
@@ -41,7 +41,8 @@ function SignLogPage() {
         })
         .then(resData => {
             const post = JSON.stringify(resData);
-            console.log(resData);
+            localStorage.setItem('token', resData.token);
+            props.setToken(resData);
         })
         .catch(err => console.log("ERROR HERE::", err));
     }

@@ -3,14 +3,16 @@ import Header from '../../Components/Header/Header';
 import ThumbnailCreator from '../../Components/thumbnailCreator/thumbnailCreator';
 import {Link, useParams} from 'react-router-dom';
 
-function CreatorPage() {
+function CreatorPage(props) {
     let {title} = useParams();
 
     return (
         <div className="creatorPage">   
             <Link to="/">Front Page</Link>
             <Header />
-            <ThumbnailCreator title = {title}/>
+            <ThumbnailCreator 
+                tokenItself = {props.token.token}
+                title = {title}/>
         </div>
     );
 }

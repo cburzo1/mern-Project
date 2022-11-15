@@ -3,13 +3,18 @@ import Header from '../../Components/Header/Header';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-function UtilityPage() {
+function UtilityPage(props) {
     const [userCreations, setUserCreations] = useState([]);
 
     useEffect(() =>{
-        fetch('http://localhost:3001/userFeed/posts')
+        fetch('http://localhost:3001/userFeed/utility', {
+            headers:{
+                Authorization: 'Bearer ' + props.token.token
+            }
+        })
         .then(res => res.json())
         .then(resData => {
+            console.log(resData);
             setUserCreations(resData.posts);
         })
         .catch(err => console.log(err));
@@ -19,6 +24,9 @@ function UtilityPage() {
 
     const deletePost = (i) => {
         fetch(`http://localhost:3001/userFeed/postDelete/${i}`,{
+            headers:{
+                Authorization: 'Bearer ' + props.token.token
+            },
             method: 'POST',
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
             body: ''

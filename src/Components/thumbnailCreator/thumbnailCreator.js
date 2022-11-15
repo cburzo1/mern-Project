@@ -5,6 +5,8 @@ function ThumbnailCreator(props) {
     const [valThumbnail, setThumbnailVal] = useState('');
     const [valImage, setImageVal] = useState({})
 
+    console.log(props.tokenItself);
+
     let title;
     let url;
     if(props.title){
@@ -27,11 +29,10 @@ function ThumbnailCreator(props) {
         formData.append('ThumbnailTitle', valThumbnail);
         formData.append('image', valImage);
 
-        for (const value of formData.values()) {
-            console.log(value);
-          }
-
         fetch(title != null? url = `http://localhost:3001/userFeed/post/${title._id}`: url = 'http://localhost:3001/userFeed/post',{
+            headers:{
+                Authorization: 'Bearer ' + props.tokenItself
+            },
             method: 'POST',
             body: formData
         })
