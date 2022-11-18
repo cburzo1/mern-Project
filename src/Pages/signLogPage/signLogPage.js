@@ -40,7 +40,7 @@ function SignLogPage(props) {
             return res.json();
         })
         .then(resData => {
-            const post = JSON.stringify(resData);
+            console.log(resData);
             localStorage.setItem('token', resData.token);
             props.setToken(resData);
         })

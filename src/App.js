@@ -4,12 +4,10 @@ import CreatorPage from './Pages/creatorPage/creatorPage';
 import UtilityPage from './Pages/utilityPage/utilityPage';
 import SignLogPage from './Pages/signLogPage/signLogPage';
 import {Routes, Route} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [token, setToken] = useState({});
-
-  console.log(token);
 
   return (
     <div>

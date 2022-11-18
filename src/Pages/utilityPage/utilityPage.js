@@ -6,16 +6,28 @@ import { useState, useEffect } from 'react';
 function UtilityPage(props) {
     const [userCreations, setUserCreations] = useState([]);
 
+    console.log("token in utility", props.token.token);
+
+    let token = props.token.token;
+
+    if(props.token.token === undefined){
+        token = localStorage.getItem('token');
+    }
+
+    console.log("token in utility after", token);
+
     useEffect(() =>{
         fetch('http://localhost:3001/userFeed/utility', {
             headers:{
-                Authorization: 'Bearer ' + props.token.token
+                Authorization: 'Bearer ' + token
             }
         })
         .then(res => res.json())
         .then(resData => {
-            console.log(resData);
-            setUserCreations(resData.posts);
+            console.log(resData.posts);
+            setUserCreations(
+                resData.posts
+            );
         })
         .catch(err => console.log(err));
     }, []);
@@ -24,27 +36,26 @@ function UtilityPage(props) {
 
     const deletePost = (i) => {
         fetch(`http://localhost:3001/userFeed/postDelete/${i}`,{
-            headers:{
-                Authorization: 'Bearer ' + props.token.token
-            },
             method: 'POST',
-            headers: {'Content-Type':'application/x-www-form-urlencoded'},
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded',
+                Authorization: 'Bearer ' + token
+            },
             body: ''
         })
         .then(res => {
             if(res.status !== 200 && res.status !== 201){
-                throw new Error('Creating or editing a post failed!'); 
+                throw new Error('Deleting post failed!'); 
             }
             return res.json();
         })
         .then(resData => {
-            const post = JSON.stringify(resData);
-            console.log(post);
-            //setUserCreations(prevState => {return });
+            setUserCreations(prevState => {
+                return resData.posts;
+            });
         })
         .catch(err => console.log("ERROR HERE::", err));
     }
-
     return (
         <div className="utilityPage">   
             <Link to="/">Front Page</Link>
