@@ -1,30 +1,25 @@
 import './utilityPage.css';
 import Header from '../../Components/Header/Header';
 import {Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../store/auth-context';
 
 function UtilityPage(props) {
     const [userCreations, setUserCreations] = useState([]);
 
-    console.log("token in utility", props.token.token);
+    const authCtx = useContext(AuthContext);
 
-    let token = props.token.token;
-
-    if(props.token.token === undefined){
-        token = localStorage.getItem('token');
-    }
-
-    console.log("token in utility after", token);
+    console.log("UTILITY::", authCtx.token);
 
     useEffect(() =>{
         fetch('http://localhost:3001/userFeed/utility', {
             headers:{
-                Authorization: 'Bearer ' + token
+                Authorization: 'Bearer ' + authCtx.token
             }
         })
         .then(res => res.json())
         .then(resData => {
-            console.log(resData.posts);
+            console.log(resData.message);
             setUserCreations(
                 resData.posts
             );
@@ -39,7 +34,7 @@ function UtilityPage(props) {
             method: 'POST',
             headers: {
                 'Content-Type':'application/x-www-form-urlencoded',
-                Authorization: 'Bearer ' + token
+                Authorization: 'Bearer ' + authCtx.token
             },
             body: ''
         })
@@ -50,6 +45,7 @@ function UtilityPage(props) {
             return res.json();
         })
         .then(resData => {
+            console.log(resData);
             setUserCreations(prevState => {
                 return resData.posts;
             });

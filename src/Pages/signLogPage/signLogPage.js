@@ -1,13 +1,16 @@
 import './signLogPage.css';
 import Header from '../../Components/Header/Header';
 import {Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../store/auth-context';
 
 function SignLogPage(props) {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [userName, setUserName] = useState('');
     const [signLog, setsignLog] = useState(false);
+
+    const authCtx = useContext(AuthContext);
 
     const emailSetter = (e) => {
         setUserEmail(e.target.value);
@@ -40,9 +43,11 @@ function SignLogPage(props) {
             return res.json();
         })
         .then(resData => {
-            console.log(resData);
-            localStorage.setItem('token', resData.token);
-            props.setToken(resData);
+            //console.log(resData.expiresIn);
+            const expirationTime = new Date(new Date().getTime() + resData.expiresIn * 1000);
+            console.log("TIME::SIGNLOG",expirationTime);
+            console.log(resData.token, expirationTime);
+            authCtx.login(resData.token, expirationTime);
         })
         .catch(err => console.log("ERROR HERE::", err));
     }
