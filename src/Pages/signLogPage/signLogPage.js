@@ -1,6 +1,6 @@
 import './signLogPage.css';
 import Header from '../../Components/Header/Header';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 
@@ -67,9 +67,10 @@ function SignLogPage(props) {
             <h3 style = {signLog?{display: 'none'}: {display: 'block'}}>UserName: </h3>
             <input onChange = {userNameSetter} value = {userName} style = {signLog?{display: 'none'}: {display: 'block'}}/>
             <h3>Password: </h3>
-            <input  onChange = {passwordSetter} value = {userPassword} />
+            <input type = "password" onChange = {passwordSetter} value = {userPassword} />
             <button onClick = {submitCredentials}>Submit</button>
             <button onClick = {signLogSwitch}>{signLog ? 'Sign Up': 'Log In'}</button>
+            {authCtx.isLoggedIn && <Navigate replace to = "/" />}
         </div>
     );
 }

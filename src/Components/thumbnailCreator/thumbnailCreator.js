@@ -3,9 +3,8 @@ import { useState } from 'react';
 
 function ThumbnailCreator(props) {
     const [valThumbnail, setThumbnailVal] = useState('');
-    const [valImage, setImageVal] = useState({})
-
-    console.log(props.tokenItself);
+    const [valImage, setImageVal] = useState({});
+    const [statusMsg, setStatusMsg] = useState('');
 
     let title;
     let url;
@@ -44,7 +43,10 @@ function ThumbnailCreator(props) {
         })
         .then(resData => {
             const post = JSON.stringify(resData);
-            console.log(post);
+            setTimeout(() => {
+                setStatusMsg('');
+            }, 3000);
+            setStatusMsg('You successfully Added a Thumbnail!');
         })
         .catch(err => console.log("ERROR HERE::", err));
     }
@@ -61,6 +63,7 @@ function ThumbnailCreator(props) {
             </div>
             <div className = "accept">
                 <button onClick={Accept}>Accept</button>
+                <h3>{statusMsg}</h3>
             </div>
         </div>
     );

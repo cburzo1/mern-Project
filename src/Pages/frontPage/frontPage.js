@@ -24,7 +24,7 @@ function FrontPage() {
     return (
         <div className="frontPage">
             {authCtx.isLoggedIn && <Link to="/creator">Creator Page</Link>}
-            {authCtx.isLoggedIn && <Link className="/utilityPageLink" to="utility">Utility Page</Link>}
+            {authCtx.isLoggedIn && <Link className="utilityPageLink" to="utility">Utility Page</Link>}
             <Link className="signLogPageLink" onClick={toLogOut} to="/signLog">{logStatus}</Link>
             <UserPanel/>
         </div>
